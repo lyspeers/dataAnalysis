@@ -65,15 +65,17 @@ public class data {
     }
     public static void writeFile(ArrayList<String[]> info){
         try {
-            FileWriter write = new FileWriter("Sored.txt");
+            FileWriter write = new FileWriter("Sorted.txt");
             BufferedWriter work = new BufferedWriter(write);
             for(int i = 0;i<info.size();i++) {
                 work.write(info.get(i)[5]);
+                work.write("\n");
                 work.write(info.get(i)[6]);
-                work.write(" ");
-            }
+                work.write("\n");
+                work.write("\n");
+            }work.close();
         }catch(FileNotFoundException e){
-            System.out.println("You maganged to not find a file you already accssed");
+            System.out.println("You managed to not find a file you already accessed");
 
         }catch(IOException e){
             System.out.println("oops its an IOException");
