@@ -31,6 +31,12 @@ public class data {
     public static ArrayList<String[]> getList(){return sorted;}
 
 
+    @Override
+    public boolean contains(CharSequence s, String c) {
+        return c.indexOf(s.toString()) > -1 || c.indexOf(s.toString().toLowerCase()) > -1;
+    }
+
+
     public static ArrayList<String[]> sortByProblem(ArrayList<String[]> data, String keyword){
         ArrayList<String[]> sorted = new ArrayList<>();
         for(int i = 0;i<data.size();i++){
@@ -67,18 +73,26 @@ public class data {
         try {
             FileWriter write = new FileWriter("Sorted.txt");
             BufferedWriter work = new BufferedWriter(write);
+            //int count= 0;
             for(int i = 0;i<info.size();i++) {
                 work.write(info.get(i)[5]);
+                //System.out.println("pro");
                 work.write("\n");
-                work.write(info.get(i)[6]);
+                if((info.get(i).length > 6)  &&  !(info.get(i)[6].contains("@"))) {
+                    work.write(info.get(i)[6]);
+                    //System.out.println("hi");
+                }
                 work.write("\n");
                 work.write("\n");
+                //System.out.println(count);
             }work.close();
         }catch(FileNotFoundException e){
             System.out.println("You managed to not find a file you already accessed");
-
-        }catch(IOException e){
+        }catch(IOException e) {
             System.out.println("oops its an IOException");
+        }catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Index Out of Bounds happened");
         }
+
     }
 }

@@ -9,15 +9,16 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
-        data test = new data(new File("Apps For Teachers (Responses) - Form Responses 1.tsv"));
-        ArrayList<String[]> test1 = test.getList();
-        test1 = data.sortBySchool(test1, "Public");
-        for (int i = 0;i<test1.size();i++){
-            System.out.println(test1.get(i)[5]);
-            System.out.println(test1.get(i)[6]);
-            System.out.println(" ");
-        }
-        data.writeFile(test1);
+        String[] setting = {"Urban", "Suburban", "Rural"};
+        String[] grade = {"High School", "Middle School", "Elementary"};
+        String[] school = {"Private", "Public", "Charter"};
+        data organize = new data(new File("Apps For Teachers (Responses) - Form Responses 1 (1).tsv"));
+        ArrayList<String[]> responses = organize.getList();
+        //responses = data.sortByGrade(responses, grade[0]);
+        //responses = data.sortBySchool(responses, school[0]);
+        responses = data.sortByProblem(responses, "Discipline");
+        //responses = data.sortBySetting(responses, setting[1]);
+        data.writeFile(responses);
 
     }
 }
